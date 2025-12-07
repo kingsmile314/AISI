@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>欢迎访问AISI，这个网站是www.kangqi.xyz的一个子网站</title>
 <style>
-        /* 保持原有样式不变 */
+    
         * {
             margin: 0;
             padding: 0;
@@ -115,57 +115,54 @@
             font-size: 1.3rem;
         }
         
-       
-/* 新增图片鉴赏区域样式 */
-.gallery-section {
-    margin-top: 60px;
-    width: 100%;
-    max-width: 1400px; /* 增加最大宽度 */
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 20px;
-}
+        /* 新增图片鉴赏区域样式 */
+        .gallery-section {
+            margin-top: 60px;
+            width: 100%;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
 
-.gallery-title {
-    font-size: 2.5rem; /* 增大标题 */
-    margin-bottom: 40px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
+        .gallery-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
-    gap: 25px; 
-    margin-top: 30px;
-}
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
 
-.gallery-item {
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    aspect-ratio: 1/1;
-    background: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-}
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
 
-.gallery-item:hover {
-    transform: translateY(-10px) scale(1.05); 
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
 
-.gallery-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-.gallery-item:hover .gallery-img {
-    transform: scale(1.1); 
-}
-}
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
         }
         
         .gallery-caption {
@@ -175,6 +172,8 @@
             right: 0;
             background: rgba(0, 0, 0, 0.7);
             padding: 10px;
+            color: white;
+            text-align: center;
             transform: translateY(100%);
             transition: transform 0.3s ease;
         }
@@ -187,6 +186,8 @@
             margin-top: 40px;
             font-size: 0.9rem;
             opacity: 0.8;
+            width: 100%;
+            max-width: 1400px;
         }
         
         @media (max-width: 600px) {
@@ -237,17 +238,20 @@
         <div class="feature">
           <h3>CG GALLERY</h3>
           <p>你可以在这里鉴赏CG</p>
+        </div>
+        <div class="feature">
+          <h3>关注主播康柒B站官方号 uid 329073257</h3>
+          <p>投九个币向主播康柒表白，免费领一次</p>
           <div>
-             <div class="feature">
-            <h3>关注主播康柒B站官方号 uid 329073257</h3>
-            <p>投币向主播康柒表白，免费领一次</p>
-            <div>
-          <div>
+            <div class= "feature">
+              <h3>关注抖音主播jacen,畅享唐心视频</h3>
+              <p>抖音号：Jencisdimen0708</p>
         </div>
       </div>
-            <div class="feature">
+    </div>
 
-      <div class="gallery-section">
+    
+    <div class="gallery-section">
         <h2 class="gallery-title">图片鉴赏</h2>
         <div class="gallery-grid">
           <div class="gallery-item">
@@ -281,24 +285,23 @@
             </div>
           </div>
           <div class="gallery-item">
-            <img src="file:///C:/Users/ydz/Desktop/014021e952efa488d2ee56c19b97da0f.jpg" alt="神人艾斯" class="gallery-img">
+            <img src="https://picsum.photos/id/15/400/400" alt="创意设计" class="gallery-img">
             <div class="gallery-caption">
               <p>创意设计</p>
-              <div>
-                <div>
-              <div class="gallery-item">
-                <img src="https://aisi-three.vercel.app/"alt="website resource" class="gallery-img">
-                <div class="gallery-caption">
-                  <p>网页本端</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://aisi-three.vercel.app/" alt="website resource" class="gallery-img">
+            <div class="gallery-caption">
+              <p>网页本端</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
     <footer>
       <p>© 2025 kangsiqi | 感谢何永康先生的大力支持</p>
-      <P>本网页采用vercel.com编辑部署</P>
+      <p>本网页采用vercel.com编辑部署</p>
     </footer>
   </body>
 </html>
