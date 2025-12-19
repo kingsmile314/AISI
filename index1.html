@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎访问 AISI | KANGQI.XYZ 子站</title>
+    <!-- 引入 Remix Icon 图标库，增加视觉丰富度 -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-highlight: rgba(255, 255, 255, 0.2);
+            --primary-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0f0c29;
+            /* 静态保底背景 */
+            background-image: linear-gradient(30deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 液态背景光斑动画 */
+        .blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 10s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        }
+
+        .blob-1 {
+            top: 10%;
+            left: 10%;
+            width: 400px;
+            height: 400px;
+            background: #7a00cc;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .blob-2 {
+            bottom: 20%;
+            right: 10%;
+            width: 350px;
+            height: 350px;
+            background: #00d2ff;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation-duration: 12s;
+            animation-direction: alternate-reverse;
+        }
+
+        .blob-3 {
+            bottom: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            background: #ff0055;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: pulse 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(30px, 50px) rotate(10deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* 通用玻璃磨砂容器 */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid var(--glass-highlight);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        /* 头部样式 */
+        header {
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #b2c9ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            font-weight: 300;
+        }
+
+        .sponsor {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 15px;
+            font-size: 0.85rem;
+            color: #4facfe;
+            background: rgba(79, 172, 254, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(79, 172, 254, 0.2);
+        }
+
+        /* 核心入口按钮 */
+        .main-cta {
+            margin: 40px 0;
+        }
+
+        .btn-liquid {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 48px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            background: var(--glass-bg);
+            border-radius: 50px;
+            border: 1px solid var(--glass-highlight);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(79, 172, 254, 0.2);
+        }
+
+        .btn-liquid::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--primary-gradient);
+            opacity: 0.2;
+            z-index: -1;
+            transition: opacity 0.4s;
+        }
+
+        .btn-liquid:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.4);
+            border-color: #4facfe;
+        }
+
+        .btn-liquid:hover::before {
+            opacity: 0.8;
+        }
+
+        .btn-liquid span {
+            margin-left: 8px;
+        }
+
+        /* 功能卡片区域 */
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+
+        .feature-card {
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .icon-box {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* 图片画廊 */
+        .gallery-section {
+            width: 100%;
+            margin-top: 80px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #4facfe;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            /* 让Grid更紧凑美观 */
+            grid-auto-flow: dense;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            z-index: 2;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.15);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px 10px 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay p {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* 页脚 */
+        footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .container { padding: 40px 20px; margin: 20px 15px; }
+            .grid-features { grid-template-columns: 1fr; }
+            .blob-1 { left: -50px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 动态背景层 -->
+    <div class="blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="container glass-panel">
+        
+        <header>
+            <h1>WELCOME TO AISI</h1>
+            <p class="subtitle">KANGQI.XYZ 的衍生世界</p>
+            <p class="subtitle" style="font-size: 0.9rem;">为推广 www.kangqi.xyz 而生</p>
+            <span class="sponsor">AISIQIMAMA 特别赞助</span>
+        </header>
+
+        <div class="main-cta">
+            <a href="https://start.kangqiovo.com" class="btn-liquid" target="_blank">
+                <i class="ri-rocket-line"></i>
+                <span>前往 KangQi 导航站</span>
+            </a>
+        </div>
+
+        <!-- 功能卡片区 (修复了原代码的嵌套问题，独立为Grid) -->
+        <div class="grid-features">
+            <!-- 卡片 1 -->
+            <div class="feature-card glass-panel">
+                <i class="ri-flag-line icon-box"></i>
+                <h3>START</h3>
+                <p>正在施工中<br>更多精彩内容敬请期待</p>
+            </div>
+
+            <!-- 卡片 2 -->
+            <div class="feature-card glass-panel">
+                <i class="ri-save-line icon-box"></i>
+                <h3>SAVE / LOAD</h3>
+                <p>随时随地保存进度<br>你的数据我们用心守护</p>
+            </div>
+
+            <!-- 卡片 3 -->
+            <div class="feature-card glass-panel">
+                <i class="ri-image-2-line icon-box"></i>
+                <h3>CG GALLERY</h3>
+                <p>精选高清 CG 鉴赏<br>享受视觉盛宴</p>
+            </div>
+
+            <!-- 卡片 4 (B站) -->
+            <a href="https://space.bilibili.com/329073257" class="feature-card glass-panel" target="_blank">
+                <i class="ri-bilibili-line icon-box" style="color: #fb7299;"></i>
+                <h3>主播康柒 (Bilibili)</h3>
+                <p>UID: 329073257<br>投9个币免费领一次福利</p>
+            </a>
+
+            <!-- 卡片 5 (抖音) -->
+            <a href="https://www.douyin.com/user/MS4wLjABAAAAHd3OzgG8LLhwT0TF7adLbK94ZXbTWS3mzDJ4OQswdIc" class="feature-card glass-panel" target="_blank">
+                <i class="ri-douyin-line icon-box" style="color: #ffffff;"></i>
+                <h3>Jacen (抖音)</h3>
+                <p>号: Jencisdimen0708<br>畅享唐心精彩视频</p>
+            </a>
+        </div>
+
+        <!-- 图片画廊区 -->
+        <div class="gallery-section">
+            <h2 class="section-title">Visual Gallery</h2>
+            <div class="gallery-grid">
+                
+                <div class="gallery-item">
+                    <img src="http://aisi.kangqiovo.com/wp-content/uploads/2025/12/DM_20251207214442_001.webp" alt="Yosuga no Sora" class="gallery-img">
+                    <div class="gallery-overlay"><p>春日野穹</p></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="http://aisi.kangqiovo.com/wp-content/uploads/2025/12/DM_20251207214444_001.webp" alt="Anri" class="gallery-img">
+                    <div class="gallery-overlay"><p>鹰仓杏璃</p></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="http://aisi.kangqiovo.com/wp-content/uploads/2025/12/DM_20251207214446_001.webp" alt="Anri" class="gallery-img">
+                    <div class="gallery-overlay"><p>鹰仓杏铃</p></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="http://aisi.kangqiovo.com/wp-content/uploads/2025/12/4FE0F5AAF6B84F701B4C85B20F452A33.jpg" alt="Cool" class="gallery-img">
+                    <div class="gallery-overlay"><p>低客康qi</p></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="http://aisi.kangqiovo.com/wp-content/uploads/2025/12/DM_20251207214451_001.webp" alt="Sky" class="gallery-img">
+                    <div class="gallery-overlay"><p>上天 接地</p></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="http://aisi.kangqiovo.com/wp-content/uploads/2025/12/DM_20251207214453_001.webp" alt="Code" class="gallery-img">
+                    <div class="gallery-overlay"><p>请看我0721吧！</p></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="http://aisi.kangqiovo.com/wp-content/uploads/2025/12/DM_20251207214456_001.webp" alt="Ciallo" class="gallery-img">
+                    <div class="gallery-overlay"><p>Ciallo～ (∠・ω< )⌒★</p></div>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 KangSiQi | 感谢 KangQi 的大力支持</p>
+            <p style="font-size: 0.8rem; opacity: 0.5;">本网页基于 WordPress 编辑部署 | Remastered by Liquid Glass</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
